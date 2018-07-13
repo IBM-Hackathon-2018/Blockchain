@@ -1,0 +1,27 @@
+namespace org.example.mynetwork
+
+participant Person identified by username {
+    o String username
+    o String password
+    o String email
+    o String name
+    o String lastName
+    --> Document[] documents
+}
+asset Document identified by hashcode {
+    o String hashcode
+    o String data
+    --> Signature documentSignature 
+}
+asset Signature identified by signature {
+    --> Person signee
+    o String signature
+}
+transaction SignDocument {
+    --> Person person
+    --> Document document
+}
+transaction CreateDocument {
+    --> Person person
+    o String data
+}
